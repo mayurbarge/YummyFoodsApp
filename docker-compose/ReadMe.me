@@ -1,0 +1,68 @@
+Setting up Keycloak
+--------------------------------------------------------------
+Login to keycloak
+Login to http://localhost:8089/admin/master/console/
+Credentials: admin/admin
+
+Create docker-compose with postgres db for keycloak
+Create new realm  > yummyfoods_app
+
+Create new client yummyfoodsapp_api_client &
+Enable Service Account Roles by clicking Client Authentication > On and Authorization > On
+Go to Clients > Create client > yummyfoodsapp-client
+Enable Client Authentication and Authorization for the realam
+Give the client realm-admin access, we need this access to create user from API.
+
+Go to realm settings > OpenID Endpoint Configuration to check config
+Get the realm settings, OpenID Endpoint config and copy token_endpoint.
+This will be used by login url for client.
+
+Go to credentials and copy client secret, use it in postman calls or API calls
+Go to uses> get user uuid
+
+
+Login to keycloak using API
+{{HOST_NAME}}/realms/{{relam}}/protocol/openid-connect/token with grant_type, client_id, client_secret
+You get access token
+
+Create user by calling API
+{{HOST_NAME}}/admin/realms/{{relam}}/users
+and provide access_token from login.
+
+Assign role to user by calling API
+{{HOST_NAME}}/admin/realms/{{relam}}/users/94eb0fa9-e8a7-4a32-ae9e-3d2a7e1275cf/role-mappings/clients/{{keycloak_client_uuid}}
+UserID: 94eb0fa9-e8a7-4a32-ae9e-3d2a7e1275cf
+
+Reference
+--------------------------------
+https://www.youtube.com/watch?v=8YPYjjH8awI
+https://www.keycloak.org/server/all-config
+https://www.youtube.com/watch?v=PyrTSrqVPdQ
+
+https://github.com/elastic/connectors
+https://github.com/elastic/connectors/tree/main/scripts/stack#readme
+
+
+Setting up ElasticSearch, Kibana and Elastic Connector for MongoDB
+-------------------------------------------------------------------------------
+The docker compose file here will create a default elastic user for Kibana
+
+After containers are up change kibana default password in elastic
+http://localhost:9200/_security/user/kibana_system/_password?pretty
+
+In kibana login with elastic/elastic
+
+Create a mongoDB Connector using credentials
+mongodb://root:root@localhost:27017/
+Connector created
+
+mongodb-connector
+ssTs3JEBMgEyHjwyJ0oi
+
+Index created
+mongodb-connector
+API key created *
+mongodb-connector-connector(opens in a new tab or window)
+czhUczNKRUJNZ0V5SGp3eVhrcl86bUtzYlBpelRSLVdIc1VEWlBsN2c1dw==
+
+

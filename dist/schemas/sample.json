@@ -1,0 +1,116 @@
+[
+  {
+    "restaurantId": "bf59ea6d-2a14-4a77-b7d0-418d41a47f09",
+    "restaurantName": "nisi aute",
+    "contactNumber": "+91 (955) 531-3391",
+    "restaurantAddress": [
+      {
+        "addressId": "0f30cc66-da72-4ab6-a04e-bfb9a9fe1e24",
+        "street": "culpa amet in",
+        "addressLine1": "dolore reprehenderit",
+        "addressLine2": "consectetur nulla",
+        "city": "Cloverdale",
+        "state": "Virgin Islands",
+        "postalCode": 275409,
+        "countryCode": "EU"
+      }
+    ],
+    "rating": 3,
+    "logoUri": "consequat"
+  },
+  {
+    "restaurantId": "9ac70ee2-393a-415f-83b5-56ea07b96392",
+    "restaurantName": "laborum nostrud",
+    "contactNumber": "+91 (800) 552-3091",
+    "restaurantAddress": [
+      {
+        "addressId": "493267be-871d-447d-bc8f-ed1137bc48b6",
+        "street": "cupidatat exercitation exercitation",
+        "addressLine1": "laboris laborum",
+        "addressLine2": "fugiat incididunt",
+        "city": "Broadlands",
+        "state": "New York",
+        "postalCode": 956688,
+        "countryCode": "IN"
+      }
+    ],
+    "rating": 3,
+    "logoUri": "aliquip"
+  },
+  {
+    "restaurantId": "7eff9533-54af-4695-becc-50c362a35702",
+    "restaurantName": "anim reprehenderit",
+    "contactNumber": "+91 (862) 431-2412",
+    "restaurantAddress": [
+      {
+        "addressId": "99ac74cd-7edd-4026-9711-a79baed4ff01",
+        "street": "dolore ullamco amet",
+        "addressLine1": "cillum deserunt",
+        "addressLine2": "proident amet",
+        "city": "Cochranville",
+        "state": "New Mexico",
+        "postalCode": 696691,
+        "countryCode": "EU"
+      }
+    ],
+    "rating": 1,
+    "logoUri": "enim"
+  },
+  {
+    "restaurantId": "fcfae0b0-d85b-4ec8-a2c6-a708059d006f",
+    "restaurantName": "cillum cupidatat",
+    "contactNumber": "+91 (978) 496-2763",
+    "restaurantAddress": [
+      {
+        "addressId": "c4a6be34-44be-4b10-a30f-db5b0c2dc5e8",
+        "street": "fugiat consectetur duis",
+        "addressLine1": "amet pariatur",
+        "addressLine2": "cupidatat ut",
+        "city": "Roulette",
+        "state": "Colorado",
+        "postalCode": 247285,
+        "countryCode": "EU"
+      }
+    ],
+    "rating": 4,
+    "logoUri": "ut"
+  },
+  {
+    "restaurantId": "9695748a-f26f-49de-912f-9cc30b6a48df",
+    "restaurantName": "culpa adipisicing",
+    "contactNumber": "+91 (834) 448-3422",
+    "restaurantAddress": [
+      {
+        "addressId": "005637c4-e93f-467a-a181-4e6e2ae45726",
+        "street": "proident officia consequat",
+        "addressLine1": "consequat commodo",
+        "addressLine2": "ad exercitation",
+        "city": "Dubois",
+        "state": "Missouri",
+        "postalCode": 917457,
+        "countryCode": "IN"
+      }
+    ],
+    "rating": 4,
+    "logoUri": "esse"
+  },
+  {
+    "restaurantId": "29180ed1-3348-4332-b31f-2ea73ed34892",
+    "restaurantName": "aliquip veniam",
+    "contactNumber": "+91 (847) 528-2025",
+    "restaurantAddress": [
+      {
+        "addressId": "733aeb84-13fb-4111-a49d-73ed74afc80e",
+        "street": "consequat nulla mollit",
+        "addressLine1": "sint ad",
+        "addressLine2": "et pariatur",
+        "city": "Clarence",
+        "state": "West Virginia",
+        "postalCode": 617770,
+        "countryCode": "EU"
+      }
+    ],
+    "rating": 3,
+    "logoUri": "irure"
+  }
+]

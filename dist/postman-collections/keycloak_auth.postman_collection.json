@@ -1,0 +1,262 @@
+{
+	"info": {
+		"_postman_id": "18ee3494-4ea1-4052-96ff-65bc6f6e8f57",
+		"name": "keycloak_auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6588708"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"access_token\", pm.response.json().access_token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{client_secret}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{HOST_NAME}}/realms/{{relam}}/protocol/openid-connect/token",
+					"host": [
+						"{{HOST_NAME}}"
+					],
+					"path": [
+						"realms",
+						"{{relam}}",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"attributes\": {\r\n        \"attribute_key\": \"test_value\"\r\n    },\r\n    \"credentials\": [\r\n        {\r\n            \"temporary\": false,\r\n            \"type\": \"spock\",\r\n            \"value\": \"spock\"\r\n        }\r\n    ],\r\n    \"username\": \"spock\",\r\n    \"firstName\": \"schn\",\r\n    \"lastName\": \"spock\",\r\n    \"email\": \"mrspock@gmail.com\",\r\n    \"emailVerified\": false,\r\n    \"enabled\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST_NAME}}/admin/realms/{{relam}}/users",
+					"host": [
+						"{{HOST_NAME}}"
+					],
+					"path": [
+						"admin",
+						"realms",
+						"{{relam}}",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get roles",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST_NAME}}/admin/realms/{{relam}}/clients/{{keycloak_client_uuid}}/roles",
+					"host": [
+						"{{HOST_NAME}}"
+					],
+					"path": [
+						"admin",
+						"realms",
+						"{{relam}}",
+						"clients",
+						"{{keycloak_client_uuid}}",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Role by Name",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST_NAME}}/admin/realms/{{relam}}/clients/{{keycloak_client_uuid}}/roles/restaurant_user",
+					"host": [
+						"{{HOST_NAME}}"
+					],
+					"path": [
+						"admin",
+						"realms",
+						"{{relam}}",
+						"clients",
+						"{{keycloak_client_uuid}}",
+						"roles",
+						"restaurant_user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assign a role to user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n{\r\n    \"id\": \"f4963620-7a7e-46b0-a78b-554a254d74b1\",\r\n    \"name\": \"restaurant_user\",\r\n    \"description\": \"\",\r\n    \"composite\": false,\r\n    \"clientRole\": true,\r\n    \"containerId\": \"21554cdf-122d-4db4-8ce3-facf8bb4e8d7\",\r\n    \"attributes\": {}\r\n}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST_NAME}}/admin/realms/{{relam}}/users/94eb0fa9-e8a7-4a32-ae9e-3d2a7e1275cf/role-mappings/clients/{{keycloak_client_uuid}}",
+					"host": [
+						"{{HOST_NAME}}"
+					],
+					"path": [
+						"admin",
+						"realms",
+						"{{relam}}",
+						"users",
+						"94eb0fa9-e8a7-4a32-ae9e-3d2a7e1275cf",
+						"role-mappings",
+						"clients",
+						"{{keycloak_client_uuid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "HOST_NAME",
+			"value": "http://localhost:8089",
+			"type": "string"
+		},
+		{
+			"key": "relam",
+			"value": "yummyfoods",
+			"type": "string"
+		},
+		{
+			"key": "client_id",
+			"value": "yummyfoods_api_client",
+			"type": "string"
+		},
+		{
+			"key": "client_secret",
+			"value": "QpXJCvvJrPjkus8VV8Yfwo9Vke03I4sz",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ0S1RmNFZXNHlFVkQxNXczUzQxT0pFeGVlUFpad1RqZnQ3emwwa0VETklRIn0.eyJleHAiOjE3MjYwMTU2MDQsImlhdCI6MTcyNjAxNTMwNCwianRpIjoiY2NjYWNhMmItN2RiMy00YWQwLWJkYTYtM2QwZWIwOWE1NjVkIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDg5L3JlYWxtcy95dW1teWZvb2RzIiwiYXVkIjpbInJlYWxtLW1hbmFnZW1lbnQiLCJhY2NvdW50Il0sInN1YiI6IjkxMmM4MmFlLWFjYzctNGMzYi1hMWM1LThiZDE3Y2M5NjI5YiIsInR5cCI6IkJlYXJlciIsImF6cCI6Inl1bW15Zm9vZHNfYXBpX2NsaWVudCIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiLyoiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMteXVtbXlmb29kcyIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJyZWFsbS1tYW5hZ2VtZW50Ijp7InJvbGVzIjpbInZpZXctcmVhbG0iLCJ2aWV3LWlkZW50aXR5LXByb3ZpZGVycyIsIm1hbmFnZS1pZGVudGl0eS1wcm92aWRlcnMiLCJpbXBlcnNvbmF0aW9uIiwicmVhbG0tYWRtaW4iLCJjcmVhdGUtY2xpZW50IiwibWFuYWdlLXVzZXJzIiwicXVlcnktcmVhbG1zIiwidmlldy1hdXRob3JpemF0aW9uIiwicXVlcnktY2xpZW50cyIsInF1ZXJ5LXVzZXJzIiwibWFuYWdlLWV2ZW50cyIsIm1hbmFnZS1yZWFsbSIsInZpZXctZXZlbnRzIiwidmlldy11c2VycyIsInZpZXctY2xpZW50cyIsIm1hbmFnZS1hdXRob3JpemF0aW9uIiwibWFuYWdlLWNsaWVudHMiLCJxdWVyeS1ncm91cHMiXX0sInl1bW15Zm9vZHNfYXBpX2NsaWVudCI6eyJyb2xlcyI6WyJ1bWFfcHJvdGVjdGlvbiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJjbGllbnRIb3N0IjoiMTkyLjE2OC42NS4xIiwicHJlZmVycmVkX3VzZXJuYW1lIjoic2VydmljZS1hY2NvdW50LXl1bW15Zm9vZHNfYXBpX2NsaWVudCIsImNsaWVudEFkZHJlc3MiOiIxOTIuMTY4LjY1LjEiLCJjbGllbnRfaWQiOiJ5dW1teWZvb2RzX2FwaV9jbGllbnQifQ.RN7-BJAeJ7AiPXRhf2nXdFVUfKoRHzpeRdAhC9ZtU0MjYK1qZmjFWcXAKwKgmb-FoJ6UZSQKNANjWd80tQQLeRw7uDIYJyVj9hRVKBdbp8iwCmDC0q54zenMdWbVNy43zXvXEiH5sAmxnSO1ta39Pepdg8ZnR9tqf-7e39GFZtU2q-jey9cuTdejs3HmvYJOyroC4-DkbbL52-xY23kuqUWaQ5OxI6quaxAR-sfrSs-TzYZY9o1AAyrwIKgrfjaNMePMsOdl2nCkoIgZi3YRoHMkvsPnLjH8FdhEqaWwnRMSP7i33mOGLWFXY29gxA1HT_nLkgMUgRn79f2GsUyzUg",
+			"type": "string"
+		},
+		{
+			"key": "keycloak_client_uuid",
+			"value": "21554cdf-122d-4db4-8ce3-facf8bb4e8d7",
+			"type": "string"
+		}
+	]
+}

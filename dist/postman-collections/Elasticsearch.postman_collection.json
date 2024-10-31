@@ -1,0 +1,306 @@
+{
+	"info": {
+		"_postman_id": "3caabd88-9a61-40ae-ba05-64ef1db79131",
+		"name": "Elasticsearch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6588708"
+	},
+	"item": [
+		{
+			"name": "Update Default Kibana Password for elasticsearch",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "changeme",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "elastic",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\":\"elastic\"\n}",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:9200/_security/user/kibana_system/_password?pretty",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_security",
+						"user",
+						"kibana_system",
+						"_password"
+					],
+					"query": [
+						{
+							"key": "pretty",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Kibana authentication",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "elastic",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "elastic",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic `echo -n kibana_system:elastic|base64 -`"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9200/_security/_authenticate?pretty=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_security",
+						"_authenticate"
+					],
+					"query": [
+						{
+							"key": "pretty",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List connectors",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "elastic",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "elastic",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9200/_connector",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_connector"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Index By Restaurant ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "ApiKey {{api_key}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"match\": {\n      \"restaurantId\": {\n        \"query\" : \"9ac70ee2-393a-415f-83b5-56ea07b96392\"\n      }\n\n    }\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ES_URL}}/mongodb-index/_search?pretty=",
+					"host": [
+						"{{ES_URL}}"
+					],
+					"path": [
+						"mongodb-index",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "pretty",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Index By Restaurant ID and Get Address",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "ApiKey {{api_key}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"_source\": {\n    \"include\": [\"restaurantAddress\"]\n    },\n  \"query\": {\n    \"match\": {\n      \"restaurantId\": {\n        \"query\" : \"9ac70ee2-393a-415f-83b5-56ea07b96392\"\n      }\n\n    }\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ES_URL}}/mongodb-index/_search?pretty=",
+					"host": [
+						"{{ES_URL}}"
+					],
+					"path": [
+						"mongodb-index",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "pretty",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Index with term",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "ApiKey {{api_key}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"match\": {\n      \"restaurantName\": {\n        \"query\" : \"qui veniam\"\n      }\n\n    }\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ES_URL}}/mongodb-index/_search?from=0&size=10",
+					"host": [
+						"{{ES_URL}}"
+					],
+					"path": [
+						"mongodb-index",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ES_URL",
+			"value": "http://localhost:9200",
+			"type": "string"
+		},
+		{
+			"key": "api_key",
+			"value": "c0EzeTNKRUJOM3lrRHFjcFFCQm86TXlvOENydFFTMUM2NF9KWkI4Rm91dw==",
+			"type": "string"
+		}
+	]
+}

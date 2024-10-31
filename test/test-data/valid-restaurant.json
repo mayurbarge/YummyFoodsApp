@@ -1,0 +1,19 @@
+{
+  "restaurantId": "rest-id-1",
+  "restaurantName": "MacDonalds",
+  "contactNumber": "9100",
+  "restaurantAddress": [
+    {
+      "addressId": "address-id-2",
+      "street": "West Street",
+      "addressLine1": "Back of MG Road",
+      "addressLine2": "Cantonment",
+      "city": "Pune",
+      "state": "Mah",
+      "postalCode": 1111,
+      "countryCode": "IN"
+    }
+  ],
+  "rating": 1,
+  "logoUri": ""
+}

@@ -1,0 +1,20 @@
+[
+  '{{repeat(0, 30)}}',
+  {
+    restaurantId: '{{guid()}}',
+    restaurantName: '{{lorem(2, "words")}}',
+    contactNumber: '+91 {{phone()}}',
+    restaurantAddress: [{
+      "addressId": '{{guid()}}',
+      "street": '{{lorem(3, "words")}}',
+      "addressLine1": '{{lorem(2, "words")}}',
+      "addressLine2": '{{lorem(2, "words")}}',
+      "city": '{{city()}}',
+      "state": '{{state()}}',
+      "postalCode": '{{integer(100000, 999999)}}',
+      "countryCode": '{{random("IN", "US", "EU")}}'
+    }],
+    "rating": '{{integer(1,5)}}',
+    "logoUri": '{{lorem(1,"words")}}'
+  }
+]

@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "fddf4578-24d5-4325-b4c9-7e05e2695d18",
+		"name": "yummyfoodsapp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6588708"
+	},
+	"item": [
+		{
+			"name": "Search Restaurant by generic query",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"match\": {\n      \"restaurantAddress.state\": {\n        \"query\" : \"Missouri\"\n      }\n\n    }\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/v1/restaurant/query?offset=0&limit=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"v1",
+						"restaurant",
+						"query"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Restaurant Address By Restaurant ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/v1/restaurant/9ac70ee2-393a-415f-83b5-56ea07b96392/address",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"v1",
+						"restaurant",
+						"9ac70ee2-393a-415f-83b5-56ea07b96392",
+						"address"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Restaurant Restaurant ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/v1/restaurant/9ac70ee2-393a-415f-83b5-56ea07b96392",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"v1",
+						"restaurant",
+						"9ac70ee2-393a-415f-83b5-56ea07b96392"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search By Any Keyword",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"match\": {\n      \"addressLine1\": {\n        \"query\" : \"sint\"\n      }\n\n    }\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/v1/restaurant?keywords=anim%20sint&offset=0&limit=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"v1",
+						"restaurant"
+					],
+					"query": [
+						{
+							"key": "keywords",
+							"value": "anim%20sint"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deprecated - Search Index By Restaurant Name",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "ApiKey {{api_key}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"match\": {\n      \"restaurantName\": {\n        \"query\" : \"dolor tempor\"\n      }\n      \n    }    \n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ES_URL}}/mongodb-index/_search?pretty=",
+					"host": [
+						"{{ES_URL}}"
+					],
+					"path": [
+						"mongodb-index",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "pretty",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Restaurant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"restaurantName\": \"eiusmod in\",\n    \"contactNumber\": \"+91 (827) 588-2562\",\n    \"restaurantAddress\": [\n      {\n        \"addressId\": \"a334598d-5439-4989-a851-e1970e9e0f73\",\n        \"street\": \"irure duis nulla\",\n        \"addressLine1\": \"Lorem aliquip\",\n        \"addressLine2\": \"Lorem mollit\",\n        \"city\": \"Celeryville\",\n        \"state\": \"Louisiana\",\n        \"postalCode\": 872544,\n        \"countryCode\": \"US\"\n      }\n    ]\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/v1/restaurant",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"v1",
+						"restaurant"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,36 @@
+{
+  "took": 2,
+  "timed_out": false,
+  "_shards": {
+    "total": 2,
+    "successful": 2,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 1,
+      "relation": "eq"
+    },
+    "max_score": 2.5902672,
+    "hits": [
+      {
+        "_index": "mongodb-index",
+        "_id": "66e1aa97002ff8ebd620794a",
+        "_score": 2.5902672,
+        "_source": {
+          "restaurantAddress": {
+            "city": "Darbydale",
+            "street": "minim irure sit",
+            "countryCode": "US",
+            "postalCode": 627239,
+            "addressLine1": "non ex",
+            "addressLine2": "velit dolor",
+            "state": "Maine",
+            "addressId": "66e1a68d8f1bd53dc0cc50ea"
+          }
+        }
+      }
+    ]
+  }
+}

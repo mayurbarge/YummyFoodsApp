@@ -1,0 +1,6 @@
+
+elasticsearch:
+    host: http://localhost:9200
+    password: changeme
+    username: elastic
+

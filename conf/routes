@@ -1,0 +1,14 @@
+
+
+# Elastic Search queries
+#GET     /connectors                             com.yummyfoods.searchapi.controllers.ElasticSearchController.listConnectors()
+
+GET     /v1/restaurant                           com.yummyfoods.userprofile.controllers.SearchController.searchByKeywords(keywords: Option[String], offset: Option[Int], limit: Option[Int])
+
+POST     /v1/restaurant/query                    com.yummyfoods.userprofile.controllers.SearchController.query(offset: Option[Int], limit: Option[Int])
+
+GET     /v1/restaurant/:restaurantId/address     com.yummyfoods.userprofile.controllers.SearchController.getAddressByRestaurantID(restaurantId: String)
+
+GET     /v1/restaurant/:restaurantId             com.yummyfoods.userprofile.controllers.SearchController.getRestaurantByID(restaurantId: String)
+
+POST    /v1/restaurant                           com.yummyfoods.restaurantprofile.controllers.RestaurantController.create()

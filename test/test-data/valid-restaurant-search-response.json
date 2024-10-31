@@ -1,0 +1,44 @@
+{
+  "took": 17,
+  "timed_out": false,
+  "_shards": {
+    "total": 2,
+    "successful": 2,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 1,
+      "relation": "eq"
+    },
+    "max_score": 2.3671236,
+    "hits": [
+      {
+        "_index": "mongodb-index",
+        "_id": "66e3d6b61be807ff44d42c34",
+        "_score": 2.3671236,
+        "_source": {
+          "restaurantAddress": [
+            {
+              "city": "London",
+              "street": "Baker Street",
+              "countryCode": "UK",
+              "postalCode": 123,
+              "addressLine1": "Lane 1",
+              "addressLine2": "Hampshire",
+              "state": "ES",
+              "addressId": "address-id-2"
+            }
+          ],
+          "restaurantName": "MacD",
+          "contactNumber": "919",
+          "rating": 1,
+          "logoUri": "",
+          "id": "66e3d6b61be807ff44d42c34",
+          "restaurantId": "res-1"
+        }
+      }
+    ]
+  }
+}

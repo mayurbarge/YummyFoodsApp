@@ -1,0 +1,38 @@
+{
+  "took": 2,
+  "timed_out": false,
+  "_shards": {
+    "total": 2,
+    "successful": 2,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 1,
+      "relation": "eq"
+    },
+    "max_score": 2.5902672,
+    "hits": [
+      {
+        "_index": "mongodb-index",
+        "_id": "66e1aa97002ff8ebd620794a",
+        "_score": 2.5902672,
+        "_source": {
+          "restaurantAddress": [
+              {
+              "city": "Pune",
+              "street": "FC Road",
+              "countryCode": "IN",
+              "postalCode": 11,
+              "addressLine1": "Shivajinagar",
+              "addressLine2": "Shivajinagar Annex",
+              "state": "Mah",
+              "addressId": "address-id-1"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
